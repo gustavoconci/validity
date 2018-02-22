@@ -1,0 +1,41 @@
+body {
+    padding-bottom: 40px;
+}
+
+hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.container {
+    max-width: 600px;
+    width: auto;
+}
+
+.page-header {
+    margin-bottom: 40px;
+}
+
+.form-control.error {
+    border-color: red;
+}
+
+.form-control.mismatch {
+    border-color: orange;
+}
+
+.form-control.valid {
+    border-color: green;
+}
+
+.form label.error {
+    color: red;
+}
+
+.form label.mismatch {
+    border-color: orange;
+}
+
+.form label.valid {
+    color: green;
+}

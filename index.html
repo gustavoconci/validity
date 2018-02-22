@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.png" />
+
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+    <title>HY microsite</title>
+    <meta name="description" content="">
+    <meta name="robots" content="">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>Validity</h1>
+            <p class="lead">jQuery form validation</p>
+        </div>
+
+        <h2>Example 1</h2>
+        <p>Required fields</p>
+        <form class="form validity" method="post" action="/">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input id="name" name="name" class="form-control" type="text" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" class="form-control" type="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone (999-999-9999)</label>
+                <input id="phone" name="phone" class="form-control" type="tel" pattern="\d{3}[\-]\d{3}[\-]\d{4}" required>
+            </div>
+            <button class="btn btn-block btn-primary" type="submit">Submit</button>
+        </form>
+
+        <hr>
+
+        <h2>Example 2</h2>
+        <p>Custom field messages</p>
+        <form class="form validity" method="post" action="/">
+            <div class="form-group">
+                <label for="name2">Name</label>
+                <input id="name2" name="name" class="form-control" data-missing="This field is required" type="text" required>
+            </div>
+            <div class="form-group">
+                <label for="email2">E-mail</label>
+                <input id="email2" name="email" class="form-control" data-missing="This field is required" data-mismatch="Please include a valid email" type="email" required>
+            </div>
+            <div class="form-group simple">
+                <label for="phone2">Phone (999-999-9999)</label>
+                <input id="phone2" name="phone" class="form-control" pattern="\d{3}[\-]\d{3}[\-]\d{4}" data-mismatch="Please match the requested format: 999-999-9999" type="tel" required>
+            </div>
+            <button class="btn btn-block btn-primary" type="submit">Submit</button>
+        </form>
+
+        <hr>
+
+        <h2>Example 3</h2>
+        <p>Checkbox and radio button</p>
+        <form class="form validity" method="post" action="/">
+            <div class="form-group">
+                <label>Gender</label>
+                <div>
+                    <div class="radio-inline">
+                        <label>
+                            <input name="gender" type="radio" value="M" required>
+                            Male
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input name="gender" type="radio" value="F">
+                            Female
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Social media</label>
+                <div>
+                    <div class="checkbox-inline">
+                        <label>
+                            <input name="social[]" type="checkbox" value="Facebook" required>
+                            Facebook
+                        </label>
+                    </div>
+                    <div class="checkbox-inline">
+                        <label>
+                            <input name="social[]" type="checkbox" value="Twitter">
+                            Twitter
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-block btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="js/validity.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
