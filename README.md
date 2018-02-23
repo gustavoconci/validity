@@ -12,7 +12,7 @@ jQuery form validation using [validity](https://html.spec.whatwg.org/#dom-cva-va
 $('.form')
     .validity()
     .on('submit', function(e) {
-        if (!$this.valid()) {
+        if (!$(this).valid()) {
             e.preventDefault();
         }
     });
@@ -22,7 +22,7 @@ $('.form')
 $('.form')
     .validity()
     .on('submit', function(e) {
-        if ($this.valid()) {
+        if ($(this).valid()) {
             // ...
         }
     });
