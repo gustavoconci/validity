@@ -28,8 +28,15 @@
                     }
                     if (!$this.attr('required')) return;
 
-                    var validity = $this[0].validity;
-                    if (validity.valid && !validity.typeMismatch && !validity.patternMismatch) {
+                    var el = $this[0],
+                        validity = el.validity;
+
+                    console.log('----------');
+                    console.log($this.attr('name'));
+                    console.log(el.checkValidity());
+                    console.log('----------');
+
+                    if (el.checkValidity()) {
                         if ($this.is(':file, :radio, :checkbox')) {
                             $this.parent().addClass('valid').removeClass('error mismatch');
                         } else {
@@ -45,15 +52,21 @@
                         $form.data('valid', false);
                         if (validity.valueMissing && $this.attr('data-missing')) {
                             $this.next('label.error').remove();
-                            $this.after('<label for="' + $this.attr('id') + '" class="error">' + $this.attr('data-missing') + '</label>');
+                            el.setCustomValidity($this.attr('data-missing'));
+                            $this.after('<label for="' + $this.attr('id') + '" class="error">' + el.validationMessage + '</label>');
+                        } else {
+                            el.setCustomValidity('');
                         }
                         if (e.type == 'focusout') {
                             if (validity.patternMismatch || validity.typeMismatch) {
                                 $this.addClass('mismatch');
                                 if ($this.attr('data-mismatch')) {
                                     $this.next('label.error').remove();
-                                    $this.after('<label for="' + $this.attr('id') + '" class="error">' + $this.attr('data-mismatch') + '</label>');
+                                    el.setCustomValidity($this.attr('data-mismatch'));
+                                    $this.after('<label for="' + $this.attr('id') + '" class="error">' + el.validationMessage + '</label>');
                                 }
+                            } else {
+                                el.setCustomValidity('');
                             }
                         }
                     }
