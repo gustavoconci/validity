@@ -18,4 +18,14 @@ $('.form')
     });
 ```
 
+```
+$('.form')
+    .validity()
+    .on('submit', function(e) {
+        if ($this.valid()) {
+            // ...
+        }
+    });
+```
+
 [Examples](http://htmlpreview.github.io/?https://github.com/gustavoconci/validity/blob/master/index.html)
