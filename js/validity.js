@@ -1,5 +1,5 @@
 /**
- * validity - jQuery validation plugin (https://github.com/chjj/marked)
+ * validity - jQuery validation plugin (https://github.com/gustavoconci/validity.js)
  * Copyright (c) 2017-2018, Gustavo Henrique Conci. (MIT Licensed)
  */
 
