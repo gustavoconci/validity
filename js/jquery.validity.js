@@ -13,81 +13,115 @@
 
         var $forms = $(this),
             inputValidity = function($form, $inputs) {
+
                 return function(e) {
-                    var $this = $(this);
+
+                    var $input = $(this);
+
                     if (e.type === 'keyup' && (
-                        !$this.val() ||
-                        ($this.is(':radio') || $this.is(':checkbox') && !$this.is(':checked'))
+                        !$input.val() ||
+                        ($input.is(':radio') || $input.is(':checkbox') && !$input.is(':checked'))
                     )) return;
-                    if (!$this.attr('name')) return;
-                    if ($this.is(':radio')) {
-                        $this = $inputs.filter('[name="' + $this.attr('name') + '"]');
-                        if (!$this.prop('required')) {
+
+                    if (!$input.attr('name')) return;
+
+                    if ($input.is(':radio')) {
+                        $input = $inputs.filter('[name="' + $input.attr('name') + '"]');
+                        if (!$input.prop('required')) {
                             return;
                         }
                     }
-                    if (!$this.attr('required')) return;
 
-                    var validity = $this[0].validity;
-                    if (validity.valid && !validity.typeMismatch && !validity.patternMismatch) {
-                        if ($this.is(':file, :radio, :checkbox')) {
-                            $this.parent().addClass('valid').removeClass('error mismatch');
+                    if (!$input.attr('required')) return;
+
+                    var input = $input[0],
+                        validity = input.validity;
+
+                    if (input.checkValidity()) {
+
+                        if ($input.is(':file, :radio, :checkbox')) {
+                            $input.parent().addClass('valid').removeClass('error mismatch');
                         } else {
-                            $this.addClass('valid').removeClass('error mismatch');
+                            $input.addClass('valid').removeClass('error mismatch');
                         }
-                        $this.next('label.error').remove();
+
+                        $input.next('label.error-message').remove();
+
                     } else {
-                        if ($this.is(':file, :radio, :checkbox')) {
-                            $this.parent().addClass('error').removeClass('valid');
+
+                        if ($input.is(':file, :radio, :checkbox')) {
+                            $input.parent().addClass('error').removeClass('valid');
                         } else {
-                            $this.addClass('error').removeClass('valid');
+                            $input.addClass('error').removeClass('valid');
                         }
+
                         $form.data('valid', false);
-                        if (validity.valueMissing && $this.attr('data-missing')) {
-                            $this.next('label.error').remove();
-                            $this.after('<label for="' + $this.attr('id') + '" class="error">' + $this.attr('data-missing') + '</label>');
-                        }
-                        if (e.type == 'focusout') {
-                            if (validity.patternMismatch || validity.typeMismatch) {
-                                $this.addClass('mismatch');
-                                if ($this.attr('data-mismatch')) {
-                                    $this.next('label.error').remove();
-                                    $this.after('<label for="' + $this.attr('id') + '" class="error">' + $this.attr('data-mismatch') + '</label>');
+
+                        if (!$input.is(':file, :radio, :checkbox')) {
+                            if (validity.valueMissing) {
+                                $input.next('label.error-message').remove();
+                                if ($input.attr('data-missing')) {
+                                    input.setCustomValidity($input.attr('data-missing'));
+                                }
+                                $input.after(
+                                    '<label ' +
+                                        ($input.attr('id') ? 'for="' + $input.attr('id') + '" ' : '') +
+                                        'class="error-message">' +
+                                            input.validationMessage +
+                                    '</label>'
+                                );
+                            } else {
+                                input.setCustomValidity('');
+                            }
+
+                            if (e.type == 'focusout') {
+                                if (validity.patternMismatch || validity.typeMismatch) {
+                                    $input.addClass('mismatch');
+                                    $input.next('label.error-message').remove();
+                                    if ($input.attr('data-mismatch')) {
+                                        input.setCustomValidity($input.attr('data-mismatch'));
+                                    }
+                                    $input.after(
+                                        '<label ' +
+                                            ($input.attr('id') ? 'for="' + $input.attr('id') + '" ' : '') +
+                                            'class="error-message">' +
+                                                input.validationMessage +
+                                        '</label>'
+                                    );
+                                } else {
+                                    input.setCustomValidity('');
                                 }
                             }
                         }
+
                     }
+
                 };
+
             };
 
         $forms.each(function() {
-            var $this = $(this),
-                $inputs = $this.find(selector);
-            $this.data('valid', true);
-
-            $this
-                .attr('novalidate', true)
+            var $form = $(this),
+                $inputs = $form.find(selector);
+            $form.attr('novalidate', true)
                 .off('keyup.validity change.validity focusout.validity')
-                .on('keyup.validity change.validity focusout.validity', selector, inputValidity($this, $inputs))
-                .off('valid.validity')
-                .on('valid.validity', function(e, $inputs) {
-                    $this.data('valid', true);
-                    $inputs.each(inputValidity($this, $inputs));
-                });
+                .on('keyup.validity change.validity focusout.validity', selector, inputValidity($form, $inputs));
         });
 
         $.fn.valid = function() {
-            var $this = $(this);
-            $this.trigger('valid', [$this.find(selector)]);
-            return $this.data('valid');
+            var $group = $(this),
+                $inputs = $group.find(selector);
+                $group.data('valid', true);
+                $inputs.each(inputValidity($group, $inputs));
+            return $group.data('valid');
         };
 
         $.fn.reset = function() {
-            var $this = $(this);
-            $this.find(':input').removeClass('valid error mismatch')
+            var $form = $(this);
+            $form.find(':input').removeClass('valid error mismatch')
                 .filter(':file').parent().removeClass('valid error mismatch');
-            $this[0].reset();
-            return $this;
+            $form[0].reset();
+            return $form;
         };
 
         return $forms;

@@ -16,26 +16,31 @@ hr {
     margin-bottom: 40px;
 }
 
-.form-control.error {
+label.error-message {
+    color: red;
+    font-size: 11px;
+}
+
+input.error {
     border-color: red;
 }
 
-.form-control.mismatch {
+input.mismatch {
     border-color: orange;
 }
 
-.form-control.valid {
+input.valid {
     border-color: green;
 }
 
-.form label.error {
+label.error {
     color: red;
 }
 
-.form label.mismatch {
+label.mismatch {
     border-color: orange;
 }
 
-.form label.valid {
+label.valid {
     color: green;
 }

@@ -30,9 +30,17 @@
         <div class="page-header">
             <h1>Validity</h1>
             <p class="lead">jQuery form validation</p>
+
+            <div class="navbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#example-1">Example 1</a></li>
+                    <li><a href="#example-2">Example 2</a></li>
+                    <li><a href="#example-3">Example 3</a></li>
+                </ul>
+            </div>
         </div>
 
-        <h2>Example 1</h2>
+        <h2 id="example-1">Example 1</h2>
         <p>Required fields</p>
         <form class="form validity" method="post" action="/">
             <div class="form-group">
@@ -52,7 +60,7 @@
 
         <hr>
 
-        <h2>Example 2</h2>
+        <h2 id="example-2">Example 2</h2>
         <p>Custom field messages</p>
         <form class="form validity" method="post" action="/">
             <div class="form-group">
@@ -65,14 +73,14 @@
             </div>
             <div class="form-group simple">
                 <label for="phone2">Phone (999-999-9999)</label>
-                <input id="phone2" name="phone" class="form-control" pattern="\d{3}[\-]\d{3}[\-]\d{4}" data-mismatch="Please match the requested format: 999-999-9999" type="tel" required>
+                <input id="phone2" name="phone" class="form-control" pattern="\d{3}[\-]\d{3}[\-]\d{4}" data-mismatch="Please match the requested format" type="tel" required>
             </div>
             <button class="btn btn-block btn-primary" type="submit">Submit</button>
         </form>
 
         <hr>
 
-        <h2>Example 3</h2>
+        <h2 id="example-3">Example 3</h2>
         <p>Checkbox and radio button</p>
         <form class="form validity" method="post" action="/">
             <div class="form-group">
@@ -115,7 +123,7 @@
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="js/jquery.validity.js"></script>
+	<script src="js/jquery.validity.min.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>
