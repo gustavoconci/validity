@@ -5,7 +5,7 @@ jQuery form validation using [validity](https://html.spec.whatwg.org/#dom-cva-va
 
 ## Getting Started
 ```
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="jquery.validity.js"></script>
 ```
 
