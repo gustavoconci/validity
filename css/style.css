@@ -21,15 +21,21 @@ label.error-message {
     font-size: 11px;
 }
 
-input.error {
+input.error,
+textarea.error,
+select.error {
     border-color: red;
 }
 
-input.mismatch {
+input.mismatch,
+textarea.mismatch,
+select.mismatch {
     border-color: orange;
 }
 
-input.valid {
+input.valid,
+textarea.valid,
+select.valid {
     border-color: green;
 }
 

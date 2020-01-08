@@ -1,7 +1,8 @@
-/**
- * validity - jQuery validation plugin (https://github.com/gustavoconci/validity.js)
- * Copyright (c) 2017-2018, Gustavo Henrique Conci. (MIT Licensed)
- */
+/*
+TODO
+- opção "ao menos um" para selecionar ao menos um dos checkbox;
+- opção de setar classes "error" e "valid" em um parent;
+*/
 
 (function() {
     var defaultSettings = {
@@ -19,8 +20,7 @@
 
             if (input.type == 'radio') {
                 var inputs = document.querySelectorAll('[name="' + input.name + '"]'),
-                    i = -1,
-                    length = inputs.length;
+                    i = -1, length = inputs.length;
 
                 while (++i < length) {
                     var label = inputs[i].parentNode.querySelector('.error-message');
@@ -74,7 +74,7 @@
                 return;
             }
 
-            if (!check) {
+            if (! check) {
                 input.classList.add('error');
                 input.classList.remove('valid');
 
@@ -90,6 +90,86 @@
 
             return check;
         };
+
+    /*
+    var Validity = function(selector, settings) {
+        var query = document.querySelectorAll(selector),
+            settings = Object.assign({}, defaultSettings, settings);
+
+        if (settings.selector == defaultSettings.selector) {
+            settings.selector = 'input, select, textarea, button';
+        }
+
+        var selector = settings.selector;
+
+        if (settings.ignore) {
+             selector += ':not(' + settings.ignore + ')';
+        }
+
+        query.forEach(function(group) {
+            var elements = group.querySelectorAll(selector);
+
+            var i = -1, length = elements.length,
+                inputs = [];
+
+            while (++i < length) {
+                var input = elements[i];
+
+                if (settings.ignore == defaultSettings.ignore && !(input.offsetWidth > 0 && input.offsetHeight > 0)) {
+                    continue;
+                }
+
+                if (input.getAttribute('name') != null) {
+                    inputs.push(input);
+                }
+            }
+
+            group.setAttribute('novalidate', true);
+
+            var formEvent = function(e) {
+                var formValid = true;
+
+                inputs.forEach(function(input) {
+                    var isValid = inputCheck(e, input, settings);
+                    if (formValid) {
+                        formValid = isValid;
+                    }
+                });
+
+                if (!formValid) {
+                    if (typeof settings.onSubmit !== 'undefined') {
+                        settings.onSubmit(e);
+                    }
+                }
+            };
+
+            var inputEvent = function(e) {
+                var target = e.target;
+
+                if (inputs.indexOf(target) >= 0) {
+                    inputCheck(e, target, settings);
+                }
+
+                e.stopPropagation();
+            };
+
+            if (typeof group.namespaces !== 'undefined') {
+                group.removeEventListener('submit', group.namespaces['form.validity']);
+                group.removeEventListener('input', group.namespaces['input.validity']);
+
+                delete group.namespaces['input.validity'];
+            }
+
+            group.namespaces = {};
+            group.namespaces['form.validity'] = formEvent;
+            group.namespaces['input.validity'] = inputEvent;
+
+            group.addEventListener('submit', formEvent, false);
+            group.addEventListener('input', inputEvent, false);
+        });
+    };
+    window.Validity = Validity;
+    */
 
     $.fn.validity = function(settings) {
         var $forms = $(this),
@@ -117,9 +197,7 @@
 
             $group.data('valid', true);
             $inputs.each(function(e) {
-                var check = inputCheck({
-                    type: 'submit'
-                }, this, settings);
+                var check = inputCheck({ type: 'submit' }, this, settings);
                 if (!check) {
                     $group.data('valid', check);
                 }

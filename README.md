@@ -7,6 +7,13 @@ jQuery form validation using [validity](https://html.spec.whatwg.org/#dom-cva-va
 <script src="jquery.validity.js"></script>
 ```
 
+## Default Settings
+```
+selector: ':input',
+ignore: ':hidden',
+showMessages: true
+```
+
 ## Usage
 ```
 $('.form')
