@@ -16,7 +16,7 @@ hr {
     margin-bottom: 40px;
 }
 
-label.error-message {
+label.error-block {
     color: red;
     font-size: 11px;
 }

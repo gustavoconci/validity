@@ -73,7 +73,7 @@
 
         <h2 id="example-2">Example 2</h2>
         <p>Custom field messages</p>
-        <form class="form validity" method="post" action="/">
+        <form class="form validity2" method="post" action="/">
             <div class="form-group">
                 <label for="name2">Name</label>
                 <input id="name2" name="name" class="form-control" data-missing="This field is required" type="text" required>
@@ -82,9 +82,13 @@
                 <label for="email2">E-mail</label>
                 <input id="email2" name="email" class="form-control" data-missing="This field is required" data-mismatch="Please include a valid email" type="email" required>
             </div>
-            <div class="form-group simple">
+            <div class="form-group">
                 <label for="phone2">Phone (999-999-9999)</label>
                 <input id="phone2" name="phone" class="form-control" pattern="\d{3}[\-]\d{3}[\-]\d{4}" data-mismatch="Please match the requested format" type="tel" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input id="image" name="image" class="form-control" type="file" required>
             </div>
             <button class="btn btn-block btn-primary" type="submit">Submit</button>
         </form>
@@ -135,6 +139,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="js/jquery.validity.min.js"></script>
+	<!-- <script src="js/validity.js"></script> -->
 	<script src="js/script.js"></script>
 </body>
 </html>
