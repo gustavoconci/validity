@@ -1,7 +1,7 @@
 # validity
 jQuery form validation using [validity](https://html.spec.whatwg.org/#dom-cva-validity) property.
 
-[Examples](http://htmlpreview.github.io/?https://github.com/gustavoconci/validity/blob/master/index.html)
+[Examples](http://conci.com.br/validity/index.html)
 
 ## Getting Started
 ```
