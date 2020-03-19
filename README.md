@@ -13,7 +13,11 @@ jQuery form validation using [validity](https://html.spec.whatwg.org/#dom-cva-va
 ```
 selector: ':input',
 ignore: ':hidden',
-showMessages: true
+showMessages: true,
+messages: {
+    missing: 'Campo obrigatório',
+    mismatch: 'O valor informado é inválido'
+}
 ```
 
 ## Usage
